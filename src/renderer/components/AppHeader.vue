@@ -1,0 +1,46 @@
+<template>
+  <v-toolbar dark fixed>
+    <img class="mr-3" :src="require('../assets/mantis_logo.png')" height="40" />
+
+    <v-toolbar-title>Mantis</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <div>
+      <v-btn
+        v-for="item in menuItems"
+        :key="item.id"
+        :to="item.path"
+        v-bind:color="item.color"
+        fab
+        small
+        :class="item.class"
+        ><v-icon>{{ item.icon }}</v-icon></v-btn
+      >
+    </div>
+  </v-toolbar>
+</template>
+
+<script>
+export default {
+  name: "AppHeader",
+  data() {
+    return {
+      menuItems: [
+        {
+          path: "/",
+          icon: "mdi-home",
+          color: "indigo",
+          class: "ma-2"
+        },
+        {
+          path: "/issueform",
+          icon: "fas fa-plus",
+          color: "green",
+          class: ""
+        }
+      ]
+    };
+  }
+};
+</script>
+
+<style scoped></style>

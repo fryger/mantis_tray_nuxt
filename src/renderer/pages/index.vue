@@ -1,12 +1,26 @@
 <template>
-  <h1>Test</h1>
+  <div>
+    <Issue
+      v-for="issue in issues"
+      :key="issue.id"
+      :summary="issue.summary"
+      :project="issue.project.name"
+      :color="issue.status.color"
+      :id="issue.id"
+    />
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+import Issue from "../components/Issue.vue";
 export default {
+  components: {
+    Issue
+  },
   data() {
     return {
-      data: null
+      issues: []
     };
   },
   created() {
@@ -18,7 +32,8 @@ export default {
       })
       .then(
         response => (
-          (this.data = response.data.issues), console.log(response.data.issues)
+          (this.issues = response.data.issues),
+          console.log(response.data.issues)
         )
       );
   }

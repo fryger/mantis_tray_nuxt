@@ -3,18 +3,19 @@
     <img class="mr-3" :src="require('../assets/mantis_logo.png')" height="40" />
 
     <v-toolbar-title>Mantis</v-toolbar-title>
-    <v-spacer></v-spacer>
+    <v-spacer />
     <div>
       <v-btn
         v-for="item in menuItems"
         :key="item.id"
         :to="item.path"
-        v-bind:color="item.color"
+        :color="item.color"
         fab
         small
         :class="item.class"
-        ><v-icon>{{ item.icon }}</v-icon></v-btn
       >
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-btn>
     </div>
   </v-toolbar>
 </template>

@@ -1,4 +1,10 @@
 import BrowserWinHandler from "./BrowserWinHandler";
+global.settings = require("electron-app-settings");
+
+settings.set("config", {
+  api_url: "http://localhost/mantisbt/api/rest",
+  api_key: "G3DULoH_dLe8G_Z0Zj6Brh-nSgdeRaWF"
+});
 
 const winHandler = new BrowserWinHandler({
   width: 400,

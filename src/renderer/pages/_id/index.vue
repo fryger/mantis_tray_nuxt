@@ -57,28 +57,28 @@
 </template>
 
 <script>
-import axios from "axios";
-import Detail from "../../components/Detail.vue";
-import File from "../../components/File.vue";
+import axios from 'axios'
+import Detail from '../../components/Detail.vue'
+import File from '../../components/File.vue'
 
 export default {
   components: { Detail, File },
-  data() {
+  data () {
     return {
       issue: {}
-    };
+    }
   },
-  created() {
+  created () {
     axios
       .get(
         `http://localhost/mantisbt/api/rest/issues/${this.$route.params.id}`,
         {
           headers: {
-            Authorization: "G3DULoH_dLe8G_Z0Zj6Brh-nSgdeRaWF"
+            Authorization: 'G3DULoH_dLe8G_Z0Zj6Brh-nSgdeRaWF'
           }
         }
       )
-      .then(response => (this.issue = response.data.issues[0]));
+      .then(response => (this.issue = response.data.issues[0]))
   }
-};
+}
 </script>

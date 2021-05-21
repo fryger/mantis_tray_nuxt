@@ -2,11 +2,11 @@
   <div>
     <Issue
       v-for="issue in issues"
+      :id="issue.id"
       :key="issue.id"
       :summary="issue.summary"
       :project="issue.project.name"
       :color="issue.status.color"
-      :id="issue.id"
     />
   </div>
 </template>

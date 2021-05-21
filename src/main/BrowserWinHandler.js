@@ -4,6 +4,7 @@ import { BrowserWindow, app, Tray, nativeImage } from "electron";
 const DEV_SERVER_URL = process.env.DEV_SERVER_URL;
 const isProduction = process.env.NODE_ENV === "production";
 const isDev = process.env.NODE_ENV === "development";
+
 let tray;
 export default class BrowserWinHandler {
   /**
@@ -45,6 +46,7 @@ export default class BrowserWinHandler {
         contextIsolation: false // https://github.com/electron/electron/issues/18037#issuecomment-806320028
       }
     });
+
     this.browserWindow.on("closed", () => {
       // Dereference the window object
       this.browserWindow = null;

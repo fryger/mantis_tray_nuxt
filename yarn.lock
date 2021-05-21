@@ -4080,6 +4080,11 @@ ejs@^3.1.6:
   dependencies:
     jake "^10.6.1"
 
+electron-app-settings@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/electron-app-settings/-/electron-app-settings-1.2.2.tgz#f0326e405f182c085cefed1fc12ef8bc9983e97b"
+  integrity sha512-EqbNKXd3jgFWKP9frmIMfdf0+FId3TWaJ7GTcADQIyRoyCQUj9GskKeAfM7CLjn4Qcb8T7fvFT8Qezhao1ShfQ==
+
 electron-builder@22.11.3:
   version "22.11.3"
   resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-22.11.3.tgz#35a193f3bdf78affd4d8b58e4d756b6dc55c922d"

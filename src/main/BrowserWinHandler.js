@@ -4,7 +4,7 @@ import { BrowserWindow, app, Tray, nativeImage } from "electron";
 const DEV_SERVER_URL = process.env.DEV_SERVER_URL;
 const isProduction = process.env.NODE_ENV === "production";
 const isDev = process.env.NODE_ENV === "development";
-
+var path = require("path");
 let tray;
 export default class BrowserWinHandler {
   /**
@@ -51,9 +51,10 @@ export default class BrowserWinHandler {
       // Dereference the window object
       this.browserWindow = null;
     });
+
     tray = new Tray(
       nativeImage.createFromPath(
-        "C:\\Users\\kfryg\\Desktop\\mantis\\vue3-electron\\src\\assets\\mantis_logo_notext.png"
+        path.join(__dirname, "..\\renderer\\assets\\mantis_logo.png")
       )
     );
     tray.on("click", (event, bounds) => {

@@ -25,6 +25,20 @@
     </v-simple-table>
     <v-toolbar elevation="0">
       <v-spacer />
+      <v-toolbar-title>Załączniki</v-toolbar-title>
+      <v-spacer />
+    </v-toolbar>
+    <v-simple-table>
+      <tbody>
+        <tr v-for="attachment in issue.attachments" :key="attachment.id">
+          <td>
+            <File :attachment="attachment" />
+          </td>
+        </tr>
+      </tbody>
+    </v-simple-table>
+    <v-toolbar elevation="0">
+      <v-spacer />
       <v-toolbar-title>Komentarze</v-toolbar-title>
       <v-spacer />
     </v-toolbar>
@@ -35,6 +49,7 @@
           :key="comment.id"
           :title="comment.reporter.name"
           :value="comment.text"
+          :attachment="comment.attachments"
         />
       </tbody>
     </v-simple-table>
@@ -44,8 +59,10 @@
 <script>
 import axios from "axios";
 import Detail from "../../components/Detail.vue";
+import File from "../../components/File.vue";
+
 export default {
-  components: { Detail },
+  components: { Detail, File },
   data() {
     return {
       issue: {}
@@ -61,12 +78,7 @@ export default {
           }
         }
       )
-      .then(
-        response => (
-          (this.issue = response.data.issues[0]),
-          console.log(response.data.issues)
-        )
-      );
+      .then(response => (this.issue = response.data.issues[0]));
   }
 };
 </script>

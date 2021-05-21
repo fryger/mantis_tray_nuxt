@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar dark fixed>
+  <v-toolbar dark>
     <img class="mr-3" :src="require('../assets/mantis_logo.png')" height="40" />
 
     <v-toolbar-title>Mantis</v-toolbar-title>
@@ -30,13 +30,19 @@ export default {
           path: "/",
           icon: "mdi-home",
           color: "indigo",
-          class: "ma-2"
+          class: "ml-2"
         },
         {
           path: "/issueform",
           icon: "fas fa-plus",
           color: "green",
-          class: ""
+          class: "ml-2"
+        },
+        {
+          path: "/settings",
+          icon: "fas fa-cog",
+          color: "red",
+          class: "ml-2"
         }
       ]
     };

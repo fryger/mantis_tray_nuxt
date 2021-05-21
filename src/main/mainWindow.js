@@ -1,4 +1,4 @@
-import BrowserWinHandler from './BrowserWinHandler'
+import BrowserWinHandler from "./BrowserWinHandler";
 
 const winHandler = new BrowserWinHandler({
   width: 400,
@@ -7,14 +7,15 @@ const winHandler = new BrowserWinHandler({
   resizable: false,
   show: false,
   webPreferences: {
-    webSecurity: false
+    webSecurity: false,
+    enableRemoteModule: true
   }
-})
+});
 
 winHandler.onCreated(_browserWindow => {
-  winHandler.loadPage('/')
+  winHandler.loadPage("/");
   // Or load custom url
   // _browserWindow.loadURL('https://google.com')
-})
+});
 
-export default winHandler
+export default winHandler;

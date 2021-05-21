@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Menu, MenuItem, app } from "electron";
+import { Menu, MenuItem, app, dialog, remote } from "electron";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
 import { ELECTRON_RELAUNCH_CODE } from "../../../.electron-nuxt/config";
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
@@ -12,6 +12,7 @@ app.once("browser-window-created", (_, browserWindow) => {
 
 app.on("ready", () => {
   const menu = Menu.getApplicationMenu();
+
   const refreshButton = new MenuItem({
     label: "Relaunch electron",
     accelerator: "CommandOrControl+E",

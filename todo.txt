@@ -1,0 +1,3 @@
+Załączniki:
+    limit pliku
+    dołączanie kilku plików

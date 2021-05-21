@@ -14,6 +14,8 @@
 <script>
 import axios from "axios";
 import Issue from "../components/Issue.vue";
+const { remote } = require("electron");
+let config = remote.getGlobal("settings").get("config");
 export default {
   components: {
     Issue
@@ -25,17 +27,12 @@ export default {
   },
   created() {
     axios
-      .get("http://localhost/mantisbt/api/rest/issues?filter_id=reported", {
+      .get(config["api_url"] + "/issues?filter_id=reported", {
         headers: {
-          Authorization: "G3DULoH_dLe8G_Z0Zj6Brh-nSgdeRaWF"
+          Authorization: config["api_key"]
         }
       })
-      .then(
-        response => (
-          (this.issues = response.data.issues),
-          console.log(response.data.issues)
-        )
-      );
+      .then(response => (this.issues = response.data.issues));
   }
 };
 </script>

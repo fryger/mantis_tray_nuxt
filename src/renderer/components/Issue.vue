@@ -9,16 +9,16 @@
 
 <script>
 export default {
-  name: "Issue",
-  props: ["id", "summary", "project", "color"],
+  name: 'Issue',
+  props: ['id', 'summary', 'project', 'color'],
   computed: {
-    issueColor() {
+    issueColor () {
       return {
         background: `linear-gradient(90deg, #ffffff 60%, ${this.color} 100%)`
-      };
+      }
     }
   }
-};
+}
 </script>
 
 <style scoped>

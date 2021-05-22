@@ -15,7 +15,7 @@
 import axios from "axios";
 import Issue from "../components/Issue.vue";
 const { remote } = require("electron");
-let config = remote.getGlobal("settings").get("config");
+const config = remote.getGlobal("settings").get("config");
 export default {
   components: {
     Issue
@@ -27,9 +27,9 @@ export default {
   },
   created() {
     axios
-      .get(config["api_url"] + "/issues?filter_id=reported", {
+      .get(config.api_url + "/issues?filter_id=reported", {
         headers: {
-          Authorization: config["api_key"]
+          Authorization: config.api_key
         }
       })
       .then(response => (this.issues = response.data.issues));

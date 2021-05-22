@@ -10,7 +10,7 @@
         <tbody>
           <tr>
             <td>
-              <v-text-field v-model="apiurl"></v-text-field>
+              <v-text-field v-model="apiurl" />
             </td>
           </tr>
         </tbody>
@@ -24,7 +24,7 @@
         <tbody>
           <tr>
             <td>
-              <v-text-field v-model="apikey"></v-text-field>
+              <v-text-field v-model="apikey" />
             </td>
           </tr>
         </tbody>
@@ -38,7 +38,7 @@
 
 <script>
 const { remote } = require("electron");
-
+const config = remote.getGlobal("settings").get("config");
 export default {
   data() {
     return {
@@ -46,16 +46,19 @@ export default {
       apikey: ""
     };
   },
+
   created() {
-    let config = remote.getGlobal("settings").get("config");
-    this.apiurl = config["api_url"];
-    config["api_key"].length > 0
-      ? (this.apikey = config["api_key"])
+    this.apiurl = config.api_url;
+    config.api_key.length > 0
+      ? (this.apikey = config.api_key)
       : (this.apikey = "Proszę uzupełnić klucz api");
   },
   methods: {
-    setConfig(a) {
-      console.log(this.apikey);
+    setConfig() {
+      remote.getGlobal("settings").set("config", {
+        api_url: this.apiurl,
+        api_key: this.apikey
+      });
     }
   }
 };

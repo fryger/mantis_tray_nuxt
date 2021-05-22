@@ -10,7 +10,9 @@
     "lint": "node_modules/.bin/eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter ./src",
     "lint:fix": "yarn run lint -- --fix",
     "preinstall": "node .electron-nuxt/check-engines.js",
-    "postinstall": "electron-builder install-app-deps & yarn run lint:fix"
+    "postinstall": "electron-builder install-app-deps & yarn run lint:fix",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "keywords": [],
   "author": "Krzysztof <krzysztof@fryger.pl>",
@@ -35,7 +37,7 @@
     "cross-env": "7.0.3",
     "deepmerge": "4.2.2",
     "electron": "12.0.6",
-    "electron-builder": "22.11.3",
+    "electron-builder": "^22.10.5",
     "electron-devtools-installer": "3.2.0",
     "eslint": "7.25.0",
     "eslint-friendly-formatter": "4.0.1",

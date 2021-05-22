@@ -57,26 +57,26 @@
 </template>
 
 <script>
-import axios from "axios";
-import Detail from "../../components/Detail.vue";
-import File from "../../components/File.vue";
-const { remote } = require("electron");
-let config = remote.getGlobal("settings").get("config");
+import axios from 'axios'
+import Detail from '../../components/Detail.vue'
+import File from '../../components/File.vue'
+const { remote } = require('electron')
+const config = remote.getGlobal('settings').get('config')
 export default {
   components: { Detail, File },
-  data() {
+  data () {
     return {
       issue: {}
-    };
+    }
   },
-  created() {
+  created () {
     axios
-      .get(config["api_url"] + `/issues/${this.$route.params.id}`, {
+      .get(config.api_url + `/issues/${this.$route.params.id}`, {
         headers: {
-          Authorization: config["api_key"]
+          Authorization: config.api_key
         }
       })
-      .then(response => (this.issue = response.data.issues[0]));
+      .then(response => (this.issue = response.data.issues[0]))
   }
-};
+}
 </script>

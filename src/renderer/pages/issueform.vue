@@ -61,7 +61,7 @@
         <tbody>
           <tr>
             <td>
-              <input ref="file" type="file" @change="handleFileUpload()">
+              <input ref="file" type="file" @change="handleFileUpload()" />
             </td>
           </tr>
         </tbody>
@@ -71,38 +71,41 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import axios from "axios";
 
-const { remote } = require('electron')
-const config = remote.getGlobal('settings').get('config')
+const { remote } = require("electron");
+let config = [];
+remote.getGlobal("settings").get("config", function(error, data) {
+  config = data;
+});
 
 export default {
-  data () {
+  data() {
     return {
       rules: {
-        required: [value => !!value || 'Pole wymagane']
+        required: [value => !!value || "Pole wymagane"]
       },
       projects: [],
-      category: '',
-      summary: '',
-      description: '',
-      file: '',
-      file_name: ''
-    }
+      category: "",
+      summary: "",
+      description: "",
+      file: "",
+      file_name: ""
+    };
   },
-  created () {
+  created() {
     axios
-      .get(config.api_url + '/projects/', {
+      .get(config.api_url + "/projects/", {
         headers: {
           Authorization: config.api_key
         }
       })
-      .then(response => (this.projects = response.data.projects))
+      .then(response => (this.projects = response.data.projects));
   },
   methods: {
-    sendIssue () {
+    sendIssue() {
       axios.post(
-        config.api_url + '/issues',
+        config.api_url + "/issues",
         {
           summary: this.summary,
           description: this.description,
@@ -124,28 +127,28 @@ export default {
             Authorization: config.api_key
           }
         }
-      )
-      this.$router.push('/')
+      );
+      this.$router.push("/");
     },
-    validateForm () {
+    validateForm() {
       if (this.$refs.form.validate()) {
-        this.sendIssue()
+        this.sendIssue();
       }
     },
-    handleFileUpload () {
-      this.file = this.$refs.file.files[0]
-      const file = this.file
-      this.file_name = file.name
-      const reader = new FileReader()
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+      const file = this.file;
+      this.file_name = file.name;
+      const reader = new FileReader();
       reader.onloadend = () => {
-        this.file = reader.result.split(',')[1]
-        console.log(reader.result)
-      }
+        this.file = reader.result.split(",")[1];
+        console.log(reader.result);
+      };
       if (file) {
-        console.log(reader.readAsDataURL(file))
+        console.log(reader.readAsDataURL(file));
       }
     }
   }
-}
+};
 </script>
 <style scoped></style>

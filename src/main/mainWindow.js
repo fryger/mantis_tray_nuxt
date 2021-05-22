@@ -1,5 +1,26 @@
 import BrowserWinHandler from "./BrowserWinHandler";
-global.settings = require("electron-app-settings");
+
+global.settings = require("electron-json-storage");
+const dataPath = settings.getDataPath();
+
+settings.get("config", function(error, data) {
+  if (error) {
+    console.log("error");
+  }
+  if (Object.keys(data).length == 0) {
+    console.log("Data");
+    settings.set(
+      "config",
+      {
+        api_url: "Ustaw adres systemu mantis",
+        api_key: "Ustaw klucz api"
+      },
+      function(error) {
+        if (error) throw error;
+      }
+    );
+  }
+});
 
 const winHandler = new BrowserWinHandler({
   width: 400,
@@ -18,13 +39,6 @@ winHandler.onCreated(_browserWindow => {
   winHandler.loadPage("/");
   // Or load custom url
   // _browserWindow.loadURL('https://google.com')
-
-  if (settings.get("config") == null) {
-    settings.set("config", {
-      api_url: "http://localhost/mantisbt/api/rest",
-      api_key: "G3DULoH_dLe8G_Z0Zj6Brh-nSgdeRaWF"
-    });
-  }
 });
 
 export default winHandler;

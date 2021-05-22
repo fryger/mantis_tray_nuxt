@@ -15,7 +15,11 @@
 import axios from "axios";
 import Issue from "../components/Issue.vue";
 const { remote } = require("electron");
-const config = remote.getGlobal("settings").get("config");
+let config = [];
+remote.getGlobal("settings").get("config", function(error, data) {
+  config = data;
+});
+
 export default {
   components: {
     Issue

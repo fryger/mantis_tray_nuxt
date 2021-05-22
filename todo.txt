@@ -1,3 +1,7 @@
 Załączniki:
     limit pliku
     dołączanie kilku plików
+
+Usuń skrót z pulpitu
+nsis albo skrypt
+dodaj do autorunu

@@ -38,7 +38,10 @@
 
 <script>
 const { remote } = require("electron");
-const config = remote.getGlobal("settings").get("config");
+let config = [];
+remote.getGlobal("settings").get("config", function(error, data) {
+  config = data;
+});
 export default {
   data() {
     return {
@@ -49,9 +52,7 @@ export default {
 
   created() {
     this.apiurl = config.api_url;
-    config.api_key.length > 0
-      ? (this.apikey = config.api_key)
-      : (this.apikey = "Proszę uzupełnić klucz api");
+    this.apikey = config.api_key;
   },
   methods: {
     setConfig() {
@@ -59,6 +60,7 @@ export default {
         api_url: this.apiurl,
         api_key: this.apikey
       });
+      remote.getCurrentWindow().reload();
     }
   }
 };

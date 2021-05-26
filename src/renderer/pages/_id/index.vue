@@ -73,13 +73,25 @@ export default {
     };
   },
   created() {
-    axios
-      .get(config.api_url + `/issues/${this.$route.params.id}`, {
-        headers: {
-          Authorization: config.api_key
-        }
-      })
-      .then(response => (this.issue = response.data.issues[0]));
+    this.feetchData();
+    this.intervalFetchData();
+  },
+  methods: {
+    feetchData: function() {
+      axios
+        .get(config.api_url + `/issues/${this.$route.params.id}`, {
+          headers: {
+            Authorization: config.api_key
+          }
+        })
+        .then(response => (this.issue = response.data.issues[0]))
+        .catch(error => console.log(error));
+    },
+    intervalFetchData: function() {
+      setInterval(() => {
+        this.feetchData();
+      }, 30000);
+    }
   }
 };
 </script>

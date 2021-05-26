@@ -30,13 +30,25 @@ export default {
     };
   },
   created() {
-    axios
-      .get(config.api_url + "/issues?filter_id=reported", {
-        headers: {
-          Authorization: config.api_key
-        }
-      })
-      .then(response => (this.issues = response.data.issues));
+    this.feetchData();
+    this.intervalFetchData();
+  },
+  methods: {
+    feetchData: function() {
+      axios
+        .get(config.api_url + "/issues?filter_id=reported", {
+          headers: {
+            Authorization: config.api_key
+          }
+        })
+        .then(response => (this.issues = response.data.issues))
+        .catch(error => console.log(error));
+    },
+    intervalFetchData: function() {
+      setInterval(() => {
+        this.feetchData();
+      }, 30000);
+    }
   }
 };
 </script>

@@ -1,11 +1,12 @@
 /* eslint-disable */
 import { EventEmitter } from "events";
-import { BrowserWindow, app, Tray, nativeImage } from "electron";
+import { BrowserWindow, app, Tray, Menu, nativeImage } from "electron";
 const DEV_SERVER_URL = process.env.DEV_SERVER_URL;
 const isProduction = process.env.NODE_ENV === "production";
 const isDev = process.env.NODE_ENV === "development";
 var path = require("path");
 let tray;
+
 export default class BrowserWinHandler {
   /**
    * @param [options] {object} - browser window options
@@ -51,12 +52,17 @@ export default class BrowserWinHandler {
       // Dereference the window object
       this.browserWindow = null;
     });
-    console.log(process.resourcesPath);
+
+    const contextMenu = Menu.buildFromTemplate([
+      { label: "Zamknij", role: "quit" }
+    ]);
     tray = new Tray(
       nativeImage.createFromPath(
         path.join(process.resourcesPath, "mantislogo.png")
       )
     );
+    tray.on("right-click", event => tray.popUpContextMenu(contextMenu));
+
     tray.on("click", (event, bounds) => {
       const { x, y } = bounds;
       const { height, width } = this.browserWindow.getBounds();

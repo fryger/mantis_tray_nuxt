@@ -55,6 +55,7 @@
       <v-toolbar elevation="0">
         <v-spacer />
         <v-toolbar-title>Załącznik</v-toolbar-title>
+
         <v-spacer />
       </v-toolbar>
       <v-simple-table>
@@ -62,6 +63,13 @@
           <tr>
             <td>
               <input ref="file" type="file" @change="handleFileUpload()" />
+            </td>
+            <td>
+              <div class="darken-2 ">
+                <span class="red--text text-left"
+                  >Max. {{ attachment_size }} Mb</span
+                >
+              </div>
             </td>
           </tr>
         </tbody>
@@ -86,6 +94,7 @@ export default {
         required: [value => !!value || "Pole wymagane"]
       },
       projects: [],
+      attachment_size: "",
       category: "",
       summary: "",
       description: "",
@@ -100,7 +109,20 @@ export default {
           Authorization: config.api_key
         }
       })
-      .then(response => (this.projects = response.data.projects));
+      .then(response => (this.projects = response.data.projects)),
+      axios
+        .get(config.api_url + "/config?option[]=max_file_size", {
+          headers: {
+            Authorization: config.api_key
+          }
+        })
+        .then(
+          response =>
+            (this.attachment_size = (
+              response.data.configs[0].value /
+              (1024 * 1024)
+            ).toFixed(0))
+        );
   },
   methods: {
     sendIssue() {

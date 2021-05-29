@@ -102,7 +102,7 @@ export default {
       file_name: ""
     };
   },
-  created() {
+  mounted() {
     axios
       .get(config.api_url + "/projects/", {
         headers: {

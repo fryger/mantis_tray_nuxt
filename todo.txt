@@ -5,3 +5,9 @@ Załączniki:
 Usuń skrót z pulpitu
 nsis albo skrypt
 dodaj do autorunu
+
+
+----
+zmiana kto zglosil z imie.nazwisko na Imie Nazwisko 
+załącznik powyżej limitu nie nie pozwala wysłać
+zmiana created na mouted? apka wysyłą request pomimo że nie jest odpalona

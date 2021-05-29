@@ -7,6 +7,8 @@ const isDev = process.env.NODE_ENV === "development";
 var path = require("path");
 let tray;
 
+app.commandLine.appendSwitch("ignore-certificate-errors");
+
 export default class BrowserWinHandler {
   /**
    * @param [options] {object} - browser window options

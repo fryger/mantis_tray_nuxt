@@ -29,7 +29,7 @@ export default {
       issues: []
     };
   },
-  created() {
+  mounted() {
     this.feetchData();
     this.intervalFetchData();
   },
@@ -47,7 +47,7 @@ export default {
     intervalFetchData: function() {
       setInterval(() => {
         this.feetchData();
-      }, 30000);
+      }, 60000);
     }
   }
 };

@@ -37,33 +37,33 @@
 </template>
 
 <script>
-const { remote } = require("electron");
-let config = [];
-remote.getGlobal("settings").get("config", function(error, data) {
-  config = data;
-});
+const { remote } = require('electron')
+let config = []
+remote.getGlobal('settings').get('config', function (error, data) {
+  config = data
+})
 export default {
-  data() {
+  data () {
     return {
-      apiurl: "",
-      apikey: ""
-    };
+      apiurl: '',
+      apikey: ''
+    }
   },
 
-  created() {
-    this.apiurl = config.api_url;
-    this.apikey = config.api_key;
+  created () {
+    this.apiurl = config.api_url
+    this.apikey = config.api_key
   },
   methods: {
-    setConfig() {
-      remote.getGlobal("settings").set("config", {
+    setConfig () {
+      remote.getGlobal('settings').set('config', {
         api_url: this.apiurl,
         api_key: this.apikey
-      });
-      remote.getCurrentWindow().reload();
+      })
+      remote.getCurrentWindow().reload()
     }
   }
-};
+}
 </script>
 <style scoped>
 .footer {

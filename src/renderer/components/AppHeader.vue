@@ -1,6 +1,6 @@
 <template>
   <v-toolbar dark>
-    <img class="mr-3" :src="require('../assets/mantis_logo.png')" height="40" />
+    <img class="mr-3" :src="require('../assets/mantis_logo.png')" height="40">
 
     <v-toolbar-title>Mantis</v-toolbar-title>
     <v-spacer />
@@ -22,32 +22,32 @@
 
 <script>
 export default {
-  name: "AppHeader",
-  data() {
+  name: 'AppHeader',
+  data () {
     return {
       menuItems: [
         {
-          path: "/",
-          icon: "mdi-home",
-          color: "indigo",
-          class: "ml-2"
+          path: '/',
+          icon: 'mdi-home',
+          color: 'indigo',
+          class: 'ml-2'
         },
         {
-          path: "/issueform",
-          icon: "fas fa-plus",
-          color: "green",
-          class: "ml-2"
+          path: '/issueform',
+          icon: 'fas fa-plus',
+          color: 'green',
+          class: 'ml-2'
         },
         {
-          path: "/settings",
-          icon: "fas fa-cog",
-          color: "red",
-          class: "ml-2"
+          path: '/settings',
+          icon: 'fas fa-cog',
+          color: 'red',
+          class: 'ml-2'
         }
       ]
-    };
+    }
   }
-};
+}
 </script>
 
 <style scoped></style>

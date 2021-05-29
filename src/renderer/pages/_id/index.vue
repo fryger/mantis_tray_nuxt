@@ -57,27 +57,27 @@
 </template>
 
 <script>
-import axios from "axios";
-import Detail from "../../components/Detail.vue";
-import File from "../../components/File.vue";
-const { remote } = require("electron");
-let config = [];
-remote.getGlobal("settings").get("config", function(error, data) {
-  config = data;
-});
+import axios from 'axios'
+import Detail from '../../components/Detail.vue'
+import File from '../../components/File.vue'
+const { remote } = require('electron')
+let config = []
+remote.getGlobal('settings').get('config', function (error, data) {
+  config = data
+})
 export default {
   components: { Detail, File },
-  data() {
+  data () {
     return {
       issue: {}
-    };
+    }
   },
-  mounted() {
-    this.feetchData();
-    this.intervalFetchData();
+  mounted () {
+    this.feetchData()
+    this.intervalFetchData()
   },
   methods: {
-    feetchData: function() {
+    feetchData () {
       axios
         .get(config.api_url + `/issues/${this.$route.params.id}`, {
           headers: {
@@ -85,13 +85,13 @@ export default {
           }
         })
         .then(response => (this.issue = response.data.issues[0]))
-        .catch(error => console.log(error));
+        .catch(error => console.log(error))
     },
-    intervalFetchData: function() {
+    intervalFetchData () {
       setInterval(() => {
-        this.feetchData();
-      }, 60000);
+        this.feetchData()
+      }, 60000)
     }
   }
-};
+}
 </script>

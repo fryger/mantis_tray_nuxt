@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import File from "./File.vue";
+import File from './File.vue'
 export default {
-  name: "Detail",
+  name: 'Detail',
   components: { File },
-  props: ["title", "value", "color", "attachment"]
-};
+  props: ['title', 'value', 'color', 'attachment']
+}
 </script>

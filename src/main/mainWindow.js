@@ -1,26 +1,26 @@
-import BrowserWinHandler from "./BrowserWinHandler";
+import BrowserWinHandler from './BrowserWinHandler'
 
-global.settings = require("electron-json-storage");
-const dataPath = settings.getDataPath();
+global.settings = require('electron-json-storage')
+const dataPath = settings.getDataPath()
 
-settings.get("config", function(error, data) {
+settings.get('config', function (error, data) {
   if (error) {
-    console.log("error");
+    console.log('error')
   }
   if (Object.keys(data).length == 0) {
-    console.log("Data");
+    console.log('Data')
     settings.set(
-      "config",
+      'config',
       {
-        api_url: "Ustaw adres systemu mantis",
-        api_key: "Ustaw klucz api"
+        api_url: 'Ustaw adres systemu mantis',
+        api_key: 'Ustaw klucz api'
       },
-      function(error) {
-        if (error) throw error;
+      function (error) {
+        if (error) throw error
       }
-    );
+    )
   }
-});
+})
 
 const winHandler = new BrowserWinHandler({
   width: 400,
@@ -33,12 +33,12 @@ const winHandler = new BrowserWinHandler({
     webSecurity: false,
     enableRemoteModule: true
   }
-});
+})
 
 winHandler.onCreated(_browserWindow => {
-  winHandler.loadPage("/");
+  winHandler.loadPage('/')
   // Or load custom url
   // _browserWindow.loadURL('https://google.com')
-});
+})
 
-export default winHandler;
+export default winHandler

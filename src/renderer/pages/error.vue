@@ -5,6 +5,6 @@
 </template>
 <script>
 export default {
-  props: ["error_msg"]
-};
+  props: ['error_msg']
+}
 </script>

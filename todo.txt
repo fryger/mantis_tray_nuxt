@@ -11,3 +11,15 @@ dodaj do autorunu
 zmiana kto zglosil z imie.nazwisko na Imie Nazwisko 
 załącznik powyżej limitu nie nie pozwala wysłać
 zmiana created na mouted? apka wysyłą request pomimo że nie jest odpalona
+---
+
+brak teści zgłoszenia done
+zmienic imie.nazwisko na Imie nazwisko done 
+ladowanie done
+remove interva feech from issue details
+
+
+------------------------------
+
+przeneisc fetch issue projekt form do Vuex store
+dodać załączniki do issueDetails

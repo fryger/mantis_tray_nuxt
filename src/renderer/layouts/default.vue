@@ -2,7 +2,7 @@
   <v-app>
     <div>
       <AppHeader />
-      <nuxt />
+      <Nuxt />
     </div>
   </v-app>
 </template>

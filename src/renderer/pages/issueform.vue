@@ -100,15 +100,15 @@ export default {
       file_name: ''
     }
   },
-  mounted () {
-    axios
+  async mounted () {
+   await axios
       .get(config.api_url + '/projects/', {
         headers: {
           Authorization: config.api_key
         }
       })
       .then(response => (this.projects = response.data.projects)),
-    axios
+   await axios
       .get(config.api_url + '/config?option[]=max_file_size', {
         headers: {
           Authorization: config.api_key
@@ -147,8 +147,8 @@ export default {
             Authorization: config.api_key
           }
         }
-      )
-      this.$router.push('/')
+      ).then(res => (this.$router.push('/')))
+      
     },
     validateForm () {
       if (this.$refs.form.validate()) {

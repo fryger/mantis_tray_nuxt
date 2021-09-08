@@ -6,7 +6,7 @@
         type="spiningDubbles"
         color="#8BDF1F"
         :size="{ width: '100px', height: '100px' }"
-      ></vue-loading>
+      />
     </div>
     <Issue
       v-for="issue in issues"
@@ -20,35 +20,34 @@
 </template>
 
 <script>
-import axios from "axios";
-import Issue from "../components/Issue.vue";
-import { VueLoading } from "vue-loading-template";
-const { remote } = require("electron");
-let config = [];
-remote.getGlobal("settings").get("config", function(error, data) {
-  config = data;
-});
+import axios from 'axios'
+import { VueLoading } from 'vue-loading-template'
+import Issue from '../components/Issue.vue'
+const { remote } = require('electron')
+let config = []
+remote.getGlobal('settings').get('config', function (error, data) {
+  config = data
+})
 
 export default {
   components: {
     Issue,
     VueLoading
   },
-  data() {
+  data () {
     return {
       issues: [],
       loading: false
-    };
+    }
   },
-  mounted() {
-    this.feetchData();
-    this.intervalFetchData();
+  mounted () {
+    this.feetchData()
   },
   methods: {
-    feetchData() {
-      this.loading = true;
-      axios
-        .get(config.api_url + "/issues?filter_id=reported", {
+    async feetchData () {
+      this.loading = true
+      await axios
+        .get(config.api_url + '/issues?filter_id=reported', {
           headers: {
             Authorization: config.api_key
           }
@@ -58,15 +57,10 @@ export default {
             (this.issues = response.data.issues), (this.loading = false)
           )
         )
-        .catch(error => console.log(error));
-    },
-    intervalFetchData() {
-      setInterval(() => {
-        this.feetchData();
-      }, 60000);
+        .catch(error => console.log(error))
     }
   }
-};
+}
 </script>
 
 <style scoperd>

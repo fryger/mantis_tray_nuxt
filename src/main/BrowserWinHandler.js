@@ -55,6 +55,8 @@ export default class BrowserWinHandler {
       this.browserWindow = null;
     });
 
+    //this.browserWindow.on('hide', event => (this.browserWindow.loadURL(DEV_SERVER_URL + '#' + "/")))
+    
     const contextMenu = Menu.buildFromTemplate([
       { label: "Zamknij", role: "quit" }
     ]);
@@ -63,6 +65,7 @@ export default class BrowserWinHandler {
         path.join(process.resourcesPath, "mantislogo.png")
       )
     );
+    
     tray.on("right-click", event => tray.popUpContextMenu(contextMenu));
 
     tray.on("click", (event, bounds) => {

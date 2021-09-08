@@ -36,9 +36,11 @@ const winHandler = new BrowserWinHandler({
 })
 
 winHandler.onCreated(_browserWindow => {
-  winHandler.loadPage('/')
+  winHandler.loadPage('/error')
   // Or load custom url
   // _browserWindow.loadURL('https://google.com')
 })
 
+
 export default winHandler
+

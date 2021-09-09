@@ -13,6 +13,10 @@ import AppHeader from '../components/AppHeader.vue'
 export default {
   components: {
     AppHeader
+  },
+  mounted () {
+   this.$store.dispatch('todos/getProjects')
+   this.$store.dispatch('todos/getConfig')
   }
 }
 </script>

@@ -66,7 +66,7 @@
             </td>
             <td>
               <div class="darken-2 ">
-                <span class="red--text text-left">Max. {{ attachment_size }} Mb</span>
+                <span class="red--text text-left">Max. {{ (attachment_size/ (1024 * 1024)).toFixed(0) }} Mb</span>
               </div>
             </td>
           </tr>
@@ -99,28 +99,9 @@ export default {
       file: '',
       file_name: ''
     }
-  },
-  async mounted () {
-   await axios
-      .get(config.api_url + '/projects/', {
-        headers: {
-          Authorization: config.api_key
-        }
-      })
-      .then(response => (this.projects = response.data.projects)),
-   await axios
-      .get(config.api_url + '/config?option[]=max_file_size', {
-        headers: {
-          Authorization: config.api_key
-        }
-      })
-      .then(
-        response =>
-          (this.attachment_size = (
-            response.data.configs[0].value /
-              (1024 * 1024)
-          ).toFixed(0))
-      )
+  },created(){
+     this.projects = this.$store.state.todos.list
+     this.attachment_size = this.$store.state.todos.attachmentSize
   },
   methods: {
     sendIssue () {
@@ -151,6 +132,7 @@ export default {
       
     },
     validateForm () {
+      console.log(this.$store.state.todos.attachmentSize)
       if (this.$refs.form.validate()) {
         this.sendIssue()
       }

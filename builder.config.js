@@ -3,7 +3,7 @@ const ICONS_DIR = 'build/icons/'
 const windowsOS = {
   win: {
     icon: ICONS_DIR + 'win-icon.ico',
-    publisherName: 'michal',
+    publisherName: 'Ecol-Unicon',
     target: 'nsis'
   },
 
@@ -42,7 +42,7 @@ const macOS = {
 }
 
 module.exports = {
-  productName: 'mantis-tray',
+  productName: 'Mini Mantis',
   appId: '',
   artifactName: 'setup-${version}.${ext}',
   directories: {

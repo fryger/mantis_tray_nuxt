@@ -3,6 +3,7 @@ import BrowserWinHandler from './BrowserWinHandler'
 global.settings = require('electron-json-storage')
 const dataPath = settings.getDataPath()
 
+
 settings.get('config', function (error, data) {
   if (error) {
     console.log('error')
@@ -23,7 +24,7 @@ settings.get('config', function (error, data) {
 })
 
 const winHandler = new BrowserWinHandler({
-  width: 400,
+  width: 450,
   height: 600,
   frame: false,
   resizable: false,

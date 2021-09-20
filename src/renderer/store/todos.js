@@ -47,8 +47,3 @@ export const state = () => ({
       )
     }
   }
-
-  //this.attachment_size = (
-   // response.data.configs[0].value /
-  //  (1024 * 1024)
-//).toFixed(0)

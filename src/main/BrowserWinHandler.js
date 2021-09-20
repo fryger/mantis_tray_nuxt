@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { EventEmitter } from "events";
+const {ipcMain} = require('electron')
 import { BrowserWindow, app, Tray, Menu, nativeImage } from "electron";
 const DEV_SERVER_URL = process.env.DEV_SERVER_URL;
 const isProduction = process.env.NODE_ENV === "production";
@@ -22,6 +23,7 @@ export default class BrowserWinHandler {
     this._createInstance();
   }
 
+  
   _createInstance() {
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
@@ -54,7 +56,13 @@ export default class BrowserWinHandler {
       // Dereference the window object
       this.browserWindow = null;
     });
-
+    /*
+    ipcMain.on('resize-window', (event, width, height) => {
+      this.browserWindow.resizable = true; 
+      this.browserWindow.setSize(width,height)
+      this.browserWindow.center()
+     })
+     */
     //this.browserWindow.on('hide', event => (this.browserWindow.loadURL(DEV_SERVER_URL + '#' + "/")))
     
     const contextMenu = Menu.buildFromTemplate([
@@ -73,14 +81,15 @@ export default class BrowserWinHandler {
       const { height, width } = this.browserWindow.getBounds();
       if (this.browserWindow.isVisible()) {
         this.browserWindow.hide();
-      } else {
+      } else { 
+        
         this.browserWindow.setBounds({
           x: x - width / 2,
           y: y - height,
           height,
           width
         });
-        this.browserWindow;
+        this.browserWindow;  
         this.browserWindow.show();
       }
     });

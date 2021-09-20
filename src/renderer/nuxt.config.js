@@ -8,7 +8,7 @@ module.exports = {
   ssr: false,
   target: 'static',
   head: {
-    title: 'mantis-tray',
+    title: 'Mini Mantis',
     meta: [{ charset: 'utf-8' }]
   },
   loading: false,

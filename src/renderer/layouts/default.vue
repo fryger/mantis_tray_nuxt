@@ -1,36 +1,35 @@
 <template>
-  <v-app>
-    <div>
+  <v-app app>
+    <v-app-bar app fixed>
       <AppHeader />
+    </v-app-bar>
+    <v-content>
       <Nuxt />
-    </div>
+    </v-content>
   </v-app>
 </template>
 
 <script>
-import AppHeader from '../components/AppHeader.vue'
+import AppHeader from "../components/AppHeader.vue";
 
 export default {
   components: {
     AppHeader
   },
-  mounted () {
-   this.$store.dispatch('todos/getProjects')
-   this.$store.dispatch('todos/getConfig')
+  mounted() {
+    this.$store.dispatch("todos/getProjects");
+    this.$store.dispatch("todos/getConfig");
   }
-}
+};
 </script>
 
 <style>
-html {
-  overflow: scroll;
-  overflow-x: hidden;
-}
 body {
   margin: 0 !important;
   font-family: "Roboto", sans-serif;
 }
-::-webkit-scrollbar {
-  width: 0;
+
+.v-toolbar__content {
+  padding: 0px !important;
 }
 </style>

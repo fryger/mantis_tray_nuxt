@@ -20,34 +20,37 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { VueLoading } from 'vue-loading-template'
-import Issue from '../components/Issue.vue'
-const { remote } = require('electron')
-let config = []
-remote.getGlobal('settings').get('config', function (error, data) {
-  config = data
-})
+import axios from "axios";
+import { VueLoading } from "vue-loading-template";
+import Issue from "../components/Issue.vue";
+
+const { remote } = require("electron");
+let config = [];
+remote.getGlobal("settings").get("config", function(error, data) {
+  config = data;
+});
 
 export default {
   components: {
     Issue,
     VueLoading
   },
-  data () {
+  data() {
     return {
       issues: [],
-      loading: false
-    }
+      loading: false,
+      refreshInterval: null
+    };
   },
-  mounted () {
-    this.feetchData()
+  mounted() {
+    this.feetchData();
+    this.intervalFetchData();
   },
   methods: {
-    async feetchData () {
-      this.loading = true
+    async feetchData() {
+      this.loading = true;
       await axios
-        .get(config.api_url + '/issues?filter_id=reported', {
+        .get(config.api_url + "/issues?filter_id=reported", {
           headers: {
             Authorization: config.api_key
           }
@@ -57,10 +60,19 @@ export default {
             (this.issues = response.data.issues), (this.loading = false)
           )
         )
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
+    },
+    intervalFetchData() {
+      this.refreshInterval = setInterval(() => {
+        this.feetchData();
+      }, 6000);
     }
+  },
+  beforeRouteLeave: function(to, from, next) {
+    clearInterval(this.refreshInterval);
+    next();
   }
-}
+};
 </script>
 
 <style scoperd>

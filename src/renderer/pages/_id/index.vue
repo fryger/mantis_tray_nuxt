@@ -155,9 +155,7 @@ export default {
         })
         .then(
           response => (
-            (this.issue = response.data.issues[0]),
-            console.log(response.data.issues[0]),
-            (this.loading = false)
+            (this.issue = response.data.issues[0]), (this.loading = false)
           )
         )
         .catch(error => console.log(error));

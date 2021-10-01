@@ -6,9 +6,11 @@ const DEV_SERVER_URL = process.env.DEV_SERVER_URL;
 const isProduction = process.env.NODE_ENV === "production";
 const isDev = process.env.NODE_ENV === "development";
 var path = require("path");
+const electron = require('electron')
 let tray;
 
 app.commandLine.appendSwitch("ignore-certificate-errors");
+
 
 export default class BrowserWinHandler {
   /**
@@ -31,6 +33,7 @@ export default class BrowserWinHandler {
     if (app.isReady()) this._create();
     else {
       app.once("ready", () => {
+        
         this._create();
       });
     }
@@ -69,6 +72,7 @@ export default class BrowserWinHandler {
       { label: "Zamknij", role: "quit" }
     ]);
     tray = new Tray(
+      
       nativeImage.createFromPath(
         path.join(process.resourcesPath, "mantislogo.png")
       )
@@ -77,18 +81,21 @@ export default class BrowserWinHandler {
     tray.on("right-click", event => tray.popUpContextMenu(contextMenu));
 
     tray.on("click", (event, bounds) => {
+      const displayBounds = electron.screen.getPrimaryDisplay().bounds
       const { x, y } = bounds;
+      const {width: dwidth } = displayBounds;
       const { height, width } = this.browserWindow.getBounds();
       if (this.browserWindow.isVisible()) {
         this.browserWindow.hide();
       } else { 
         
         this.browserWindow.setBounds({
-          x: x - width / 2,
-          y: y - height,
+          x: Math.floor(dwidth - width),
+          y: Math.floor(y - height),
           height,
           width
         });
+        
         this.browserWindow;  
         this.browserWindow.show();
       }

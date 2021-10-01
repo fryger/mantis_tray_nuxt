@@ -44,7 +44,7 @@ const macOS = {
 module.exports = {
   productName: 'Mini Mantis',
   appId: '',
-  artifactName: 'setup-${version}.${ext}',
+  artifactName: 'setup-0.0.8.${ext}',
   directories: {
     output: 'build'
   },

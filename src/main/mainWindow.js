@@ -24,7 +24,7 @@ settings.get('config', function (error, data) {
 })
 
 const winHandler = new BrowserWinHandler({
-  width: 450,
+  width: 550,
   height: 600,
   frame: false,
   resizable: false,

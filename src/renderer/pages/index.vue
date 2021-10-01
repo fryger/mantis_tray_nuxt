@@ -65,7 +65,7 @@ export default {
     intervalFetchData() {
       this.refreshInterval = setInterval(() => {
         this.feetchData();
-      }, 6000);
+      }, 1200000);
     }
   },
   beforeRouteLeave: function(to, from, next) {

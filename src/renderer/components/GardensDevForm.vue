@@ -82,6 +82,7 @@ export default {
         },
         {
           title: "Tło projektu",
+          textarea: "true",
           model: "description",
           label:
             "Przykład: Muszę zamawiać elementy do nowego typoszeregu urządzeń o nazwie GOLD. W tej chwili szacuję na podstawie istniejących raportów. Raporty te nie są wystarczające gdyż nie uwzględniają różnych elementów nowego urządzenia. Ponadto chciałbym używać innych parametrów WE do mojego raportu. Zatem potrzebny jest nowy raport zapotrzebowania na elementy.",
